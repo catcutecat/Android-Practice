@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="site"
+            type="com.example.uiassignment.ui.site.SiteItem.Site" />
+
+        <variable
+            name="actionHandler"
+            type="com.example.uiassignment.ui.site.SiteActionHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/site_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:text="@{site.id}"
+            android:textColor="?colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="311" />
+
+        <TextView
+            android:id="@+id/site_name"
+            style="@style/Widget.UIAssignment.SingleLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:text="@{site.name}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/site_county"
+            app:layout_constraintEnd_toStartOf="@id/middle"
+            app:layout_constraintStart_toEndOf="@id/site_id"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="新北(樹林)新北(樹林)新北(樹林)新北(樹林)新北(樹林)新北(樹林)" />
+
+        <TextView
+            android:id="@+id/site_county"
+            style="@style/Widget.UIAssignment.SingleLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:text="@{site.county}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/middle"
+            app:layout_constraintStart_toEndOf="@id/site_id"
+            app:layout_constraintTop_toBottomOf="@id/site_name"
+            tools:text="新北市" />
+
+        <TextView
+            android:id="@+id/site_pm25"
+            style="@style/Widget.UIAssignment.SingleLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:gravity="end"
+            android:text="@{site.pm2_5}"
+            app:layout_constraintBottom_toTopOf="@id/site_status"
+            app:layout_constraintEnd_toStartOf="@id/arrow"
+            app:layout_constraintStart_toEndOf="@id/middle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="9" />
+
+        <TextView
+            android:id="@+id/site_status"
+            style="@style/Widget.UIAssignment.SingleLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:gravity="end"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/arrow"
+            app:layout_constraintStart_toEndOf="@id/middle"
+            app:layout_constraintTop_toBottomOf="@id/site_pm25"
+            app:siteStatusText="@{site.status}"
+            app:isGoodStatus="@{site.isGoodStatus}"
+            tools:text="The status is good, we want to go out to have fun." />
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:importantForAccessibility="no"
+            android:onClick="@{() -> actionHandler.onSiteClick(site)}"
+            android:src="@drawable/ic_arrow_right"
+            app:goneUnless="@{site.isGoodStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?colorPrimary"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

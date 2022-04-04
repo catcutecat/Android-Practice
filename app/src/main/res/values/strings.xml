@@ -4,6 +4,9 @@
     <string name="title_overview">空氣污染</string>
     <string name="title_search">Search</string>
 
+    <!--  Site  -->
+    <string name="good_status">The status is good, we want to go out to have fun!</string>
+
     <!--  Search Country  -->
     <string name="search_country_hint">請輸入「站名」</string>
 

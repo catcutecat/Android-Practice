@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="site"
+            type="com.example.uiassignment.ui.site.SiteItem.Card" />
+
+        <variable
+            name="actionHandler"
+            type="com.example.uiassignment.ui.site.SiteActionHandler" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.UIAssignment.SiteCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="@dimen/margin_small"
+        app:contentPaddingLeft="@dimen/margin_normal"
+        app:contentPaddingRight="@dimen/margin_normal"
+        app:contentPaddingTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/site_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:text="@{site.id}"
+                app:layout_constraintBottom_toTopOf="@id/site_county"
+                app:layout_constraintEnd_toStartOf="@id/site_name"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:text="311" />
+
+            <TextView
+                android:id="@+id/site_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:text="@{site.name}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/site_id"
+                app:layout_constraintEnd_toStartOf="@id/site_pm25"
+                app:layout_constraintStart_toEndOf="@id/site_id"
+                app:layout_constraintTop_toTopOf="@id/site_id"
+                tools:text="新北(樹林)" />
+
+            <TextView
+                android:id="@+id/site_pm25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:text="@{site.pm2_5}"
+                app:layout_constraintBottom_toBottomOf="@id/site_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/site_name"
+                app:layout_constraintTop_toTopOf="@id/site_id"
+                tools:text="9" />
+
+            <TextView
+                android:id="@+id/site_county"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:text="@{site.county}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/site_status"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/site_id"
+                tools:text="新北市" />
+
+            <TextView
+                android:id="@+id/site_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:text="@{site.status}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/site_county"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/site_county"
+                app:layout_constraintTop_toTopOf="@id/site_county"
+                tools:text="良好" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
