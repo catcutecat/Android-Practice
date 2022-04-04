@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Widget styles -->
+
+    <style name="Widget.UIAssignment" parent="@android:style/Widget.Material" />
+
+    <style name="Widget.UIAssignment.AppBar" parent="@style/Widget.Design.AppBarLayout">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
+</resources>

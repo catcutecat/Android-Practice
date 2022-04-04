@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.overview.SearchFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Widget.UIAssignment.AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:iconifiedByDefault="false"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:queryBackground="@color/transparent"
+                    android:queryHint="@string/search_country_hint"
+                    android:searchHintIcon="@null"
+                    android:searchIcon="@null">
+                </SearchView>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_search" />
+
+    </FrameLayout>
+
+</layout>
