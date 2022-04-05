@@ -7,8 +7,10 @@
     <!--  Site  -->
     <string name="good_status">The status is good, we want to go out to have fun!</string>
 
-    <!--  Search Country  -->
-    <string name="search_country_hint">請輸入「站名」</string>
+    <!--  Search Site  -->
+    <string name="search_site_hint">請輸入「站名」</string>
+    <string name="search_site_description">輸入「站名」查詢該地區空氣污染資訊</string>
+    <string name="search_site_empty_results">找不到「%s」相關的空氣污染資訊</string>
 
     <!-- Accessibility -->
     <string name="a11y_search_country">Search Country</string>

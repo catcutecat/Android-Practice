@@ -2,9 +2,17 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.uiassignment.ui.search.SearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.overview.SearchFragment">
@@ -12,9 +20,12 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             style="@style/Widget.UIAssignment.AppBar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -28,7 +39,7 @@
                     android:iconifiedByDefault="false"
                     android:imeOptions="actionDone|flagNoExtractUi"
                     android:queryBackground="@color/transparent"
-                    android:queryHint="@string/search_country_hint"
+                    android:queryHint="@string/search_site_hint"
                     android:searchHintIcon="@null"
                     android:searchIcon="@null">
                 </SearchView>
@@ -37,11 +48,49 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/title_search" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/result_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:goneUnless="@{!viewModel.isEmpty}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:siteItems="@{viewModel.resultItems}"
+            tools:listitem="@layout/item_site" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/info_text"
+            style="@style/Widget.UIAssignment.Info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="?actionBarSize"
+            app:goneUnless="@{viewModel.isEmpty}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:textQuery="@{viewModel.queryText}"
+            tools:text="@string/search_site_empty_results"
+            tools:visibility="visible" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isLoading="@{viewModel.isSearching}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

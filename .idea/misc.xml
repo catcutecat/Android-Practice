@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/ic_info.xml" value="0.204" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.265" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23220973782771537" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.25364583333333335" />

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.uiassignment.data.SiteRepository
 import com.example.uiassignment.ui.overview.OverviewViewModel
+import com.example.uiassignment.ui.search.SearchViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(private val repository: Any) : ViewModelProvider.NewInstanceFactory() {
@@ -11,6 +12,8 @@ class ViewModelFactory(private val repository: Any) : ViewModelProvider.NewInsta
         when {
             isAssignableFrom(OverviewViewModel::class.java) ->
                 OverviewViewModel(repository as SiteRepository)
+            isAssignableFrom(SearchViewModel::class.java) ->
+                SearchViewModel(repository as SiteRepository)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
