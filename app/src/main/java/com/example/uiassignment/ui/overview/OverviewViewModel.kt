@@ -20,6 +20,7 @@ class OverviewViewModel(private val repository: SiteRepository) : ViewModel() {
             viewModelScope.launch {
                 repository.refreshSites()
                 _isLoading.value = false
+                _isSwipeRefreshing.value = false
             }
         }
         repository.sites.distinctUntilChanged().switchMap {
@@ -31,6 +32,9 @@ class OverviewViewModel(private val repository: SiteRepository) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isSwipeRefreshing = MutableLiveData(false)
+    val isSwipeRefreshing: LiveData<Boolean> = _isSwipeRefreshing
 
     val topSiteItems: LiveData<List<SiteItem.Card>> = Transformations.map(_allItems) {
         it.take(TOP_SITE_SIZE).map { createTopSiteItem(it) }
@@ -50,6 +54,11 @@ class OverviewViewModel(private val repository: SiteRepository) : ViewModel() {
 
     fun loadData(forceUpdate: Boolean) {
         _forceUpdate.value = forceUpdate
+    }
+
+    fun onSwipeRefresh() {
+        _isSwipeRefreshing.value = true
+        loadData(true)
     }
 
     private fun createTopSiteItem(from: SiteData): SiteItem.Card {

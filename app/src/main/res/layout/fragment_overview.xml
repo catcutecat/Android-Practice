@@ -44,12 +44,14 @@
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin_normal"
             android:scrollbars="horizontal"
+            app:goneUnless="@{!viewModel.isEmpty()}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appbar"
             app:siteItems="@{viewModel.topSiteItems}"
-            tools:listitem="@layout/item_site_card" />
+            tools:listitem="@layout/item_site_card"
+            tools:visibility="gone" />
 
         <View
             android:id="@+id/divider"
@@ -60,25 +62,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/top_site_list" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/site_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            app:siteItems="@{viewModel.siteItems}"
-            tools:listitem="@layout/item_site" />
+            app:onRefreshListener="@{() -> viewModel.onSwipeRefresh()}"
+            app:refreshing="@{viewModel.isSwipeRefreshing}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/site_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:siteItems="@{viewModel.siteItems}"
+                tools:listitem="@layout/item_site" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/info_text"
+            style="@style/Widget.UIAssignment.Info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="?actionBarSize"
+            android:text="@string/overview_no_data"
+            app:goneUnless="@{viewModel.isEmpty &amp;&amp; !viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            tools:visibility="visible" />
 
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/progress_bar"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:isLoading="@{viewModel.isLoading}"
+            app:isLoading="@{viewModel.isLoading &amp;&amp; !viewModel.isSwipeRefreshing}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

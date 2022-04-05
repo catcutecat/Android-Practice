@@ -12,6 +12,9 @@
     <string name="search_site_description">輸入「站名」查詢該地區空氣污染資訊</string>
     <string name="search_site_empty_results">找不到「%s」相關的空氣污染資訊</string>
 
+    <!--  Overview  -->
+    <string name="overview_no_data">暫時無法獲取空氣污染資訊</string>
+
     <!-- Accessibility -->
     <string name="a11y_search_country">Search Country</string>
 
